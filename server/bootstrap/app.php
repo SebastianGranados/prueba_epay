@@ -61,6 +61,17 @@ $app->singleton(
 
 $app->configure('app');
 
+
+/*|--------------------------------------------------------------------------
+| Register Mail Service Provider
+|--------------------------------------------------------------------------
+*/
+
+$app->register(Illuminate\Mail\MailServiceProvider::class);
+
+$app->configure('mail');
+
+
 /*
 |--------------------------------------------------------------------------
 | Register Middleware
@@ -117,5 +128,7 @@ $app->withEloquent();
 
 $app->register(Illuminate\Validation\ValidationServiceProvider::class);
 $app->register(App\Providers\CustomerServiceProvider::class);
+$app->register(App\Providers\WalletServiceProvider::class);
+$app->register(App\Providers\PaymentServiceProvider::class);
 
 return $app;

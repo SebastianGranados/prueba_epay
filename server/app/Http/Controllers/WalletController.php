@@ -33,6 +33,7 @@ class WalletController extends Controller
       'phone.max' => 'El teléfono no puede tener más de 20 caracteres'
     ]);
 
+    try {
     if ($validator->fails()) {
       return $this->apiResponse(
         422,
@@ -43,7 +44,6 @@ class WalletController extends Controller
       );
     }
 
-    try {
       $balance = $this->walletService->getWalletBalance(
         $request->query('document'),
         $request->query('phone')
@@ -56,7 +56,7 @@ class WalletController extends Controller
       );
     } catch (Exception $e) {
       return $this->apiResponse(
-        400,
+        $e->getStatusCode() ?? 400,
         null,
         'Error al obtener el balance',
         $e->getMessage(),
@@ -83,17 +83,17 @@ class WalletController extends Controller
       'value.min' => 'El monto debe ser al menos 1'
     ]);
 
-    if ($validator->fails()) {
-      return $this->apiResponse(
-        422,
-        null,
-        'Validación fallida',
-        $validator->errors(),
-        true
-      );
-    }
-
     try {
+      if ($validator->fails()) {
+        return $this->apiResponse(
+          400,
+          null,
+          'Validación fallida',
+          $validator->errors(),
+          true
+        );
+      }
+
       $wallet = $this->walletService->rechargeWallet($request->all());
 
       return $this->apiResponse(
@@ -103,7 +103,7 @@ class WalletController extends Controller
       );
     } catch (Exception $e) {
       return $this->apiResponse(
-        400,
+        $e->getStatusCode() ?? 400,
         null,
         'Error al realizar la recarga',
         $e->getMessage(),

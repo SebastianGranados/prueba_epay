@@ -24,4 +24,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
   // Rutas de billetera
   $router->post('wallet/recharge', ['uses' => 'WalletController@recharge']); // Recargar de billetera
   $router->get('wallet/balance', ['uses' => 'WalletController@balance']);
+
+  $router->post('payment/request', ['uses' => 'PaymentController@requestPayment']);
+  $router->post('payment/confirm', ['uses' => 'PaymentController@confirmPayment']);
+  
 });

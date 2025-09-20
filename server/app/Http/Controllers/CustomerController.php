@@ -39,17 +39,17 @@ class CustomerController extends Controller
       'phone.max' => 'El teléfono no puede tener más de 20 caracteres'
     ]);
 
-    if ($validator->fails()) {
-      return $this->apiResponse(
-        422,
-        null,
-        'Validación fallida',
-        $validator->errors(),
-        true
+    try {
+      if ($validator->fails()) {
+        return $this->apiResponse(
+          422,
+          null,
+          'Validación fallida',
+          $validator->errors(),
+          true
       );
     }
 
-    try {
       $customer = $this->customerService->createCustomer($request->all());
 
       return $this->apiResponse(
@@ -59,7 +59,7 @@ class CustomerController extends Controller
       );
     } catch (Exception $e) {
       return $this->apiResponse(
-        $e->getCode(),
+        $e->getStatusCode() ?? 400,
         null,
         $e->getMessage(),
         $e->getMessage(),
