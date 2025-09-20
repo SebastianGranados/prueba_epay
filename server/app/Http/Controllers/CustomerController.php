@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\CustomerService;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Validator;
+
+use App\Services\CustomerService;
 use Exception;
 
 class CustomerController extends Controller
@@ -42,7 +43,7 @@ class CustomerController extends Controller
       return $this->apiResponse(
         422,
         null,
-        'Validation failed',
+        'Validación fallida',
         $validator->errors(),
         true
       );
@@ -54,7 +55,7 @@ class CustomerController extends Controller
       return $this->apiResponse(
         201,
         $customer,
-        'Customer created successfully'
+        'Cliente creado exitosamente'
       );
     } catch (Exception $e) {
       return $this->apiResponse(

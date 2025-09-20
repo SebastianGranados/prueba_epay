@@ -37,7 +37,7 @@ class CustomerService
       return $customer->load('wallet');
 
     } catch (Exception $e) {
-      throw new Exception('Error creating customer: ' . $e->getMessage());
+      throw new Exception('Error al crear el cliente: ' . $e->getMessage());
     }
   }
 
@@ -45,21 +45,21 @@ class CustomerService
    * Validar datos del cliente
    */
   private function validateCustomerData(array $data): void
-{
+  {
     $required = ['document', 'name', 'email'];
     
     foreach ($required as $field) {
       if (empty($data[$field])) {
-        throw new ValidationException("The {$field} field is required");
+        throw new ValidationException("El campo {$field} es obligatorio");
       }
     }
 
     if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
-      throw new ValidationException('Invalid email format');
+      throw new ValidationException('Formato de email inválido');
     }
 
     if (!is_numeric($data['document']) || strlen($data['document']) < 6) {
-      throw new ValidationException('Document must be numeric and at least 6 digits');
+      throw new ValidationException('El documento debe ser numérico y tener al menos 6 dígitos');
     }
   }
 
