@@ -20,4 +20,8 @@ $router->get('/', function () use ($router) {
 $router->group(['prefix' => 'api'], function () use ($router) {
   // Ruta de cliente
   $router->post('customer/create',  ['uses' => 'CustomerController@register']);
+  
+  // Rutas de billetera
+  $router->post('wallet/recharge', ['uses' => 'WalletController@recharge']); // Recargar de billetera
+  $router->get('wallet/balance', ['uses' => 'WalletController@balance']);
 });
