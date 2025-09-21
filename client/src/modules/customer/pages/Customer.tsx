@@ -1,7 +1,10 @@
 import React, { useState } from "react";
-import type { CustomerForm } from "../types";
+
 import { useCreateCustomer } from "../hooks/useCreateCustomer";
+
 import Input from "../../../components/input/Input";
+
+import type { CustomerForm } from "../types";
 
 export default function CustomerFormComponent() {
   const { submit, loading } = useCreateCustomer();
@@ -27,7 +30,7 @@ export default function CustomerFormComponent() {
     <div className="flex items-center justify-center min-h-screen p-6">
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-lg bg-white shadow-md rounded-2xl p-8 space-y-6 border border-gray-200"
+        className="w-full max-w-lg bg-white shadow-md rounded-md p-8 space-y-6 border border-gray-200"
       >
         <h2 className="text-3xl font-bold text-gray-800 text-center">
           Registrar Cliente
