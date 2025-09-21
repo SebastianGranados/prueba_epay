@@ -36,8 +36,11 @@ export default function Payment() {
     }
   }, [data, navigate]);
 
+  console.log("Hi");
+  
+
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-6">
+    <div className="flex flex-col items-center justify-center py-56">
       <form
         onSubmit={handleSubmit}
         className="w-full max-w-lg bg-white shadow-md rounded-md p-8 space-y-6 border border-gray-200"
@@ -51,7 +54,7 @@ export default function Payment() {
             label="Documento"
             type="text"
             name="document"
-            value={form.document}
+            value={ form.document}
             onChange={handleChange}
             required
           />

@@ -9,8 +9,9 @@ import PaymentConfirm from "../modules/payment/pages/PaymentConfirm";
 const PublicRoutes: React.FC = () => {
   return (
     <Routes>
-      <Route path="/customer" element={<Customer />} />
+      <Route path="*" element={<Wallet />} />
       <Route path="/wallet" element={<Wallet />} />
+      <Route path="/customer" element={<Customer />} />
       <Route path="/payment" element={<Payment />} />
       <Route path="/payment/:session_id" element={<PaymentConfirm />} />
     </Routes>

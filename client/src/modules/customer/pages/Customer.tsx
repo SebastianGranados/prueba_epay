@@ -27,7 +27,7 @@ export default function CustomerFormComponent() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen p-6">
+    <div className="flex justify-center py-56">
       <form
         onSubmit={handleSubmit}
         className="w-full max-w-lg bg-white shadow-md rounded-md p-8 space-y-6 border border-gray-200"

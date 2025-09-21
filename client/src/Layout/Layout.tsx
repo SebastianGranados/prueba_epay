@@ -13,7 +13,7 @@ const Layout = ({ children }: LayoutProps) => {
       <header className="bg-gray-50 shadow-sm sticky top-0 z-10">
         <div className="max-w-6xl mx-auto px-10 py-4 flex items-center justify-between">
           <Link to="/wallet" className="text-xl font-semibold text-indigo-600">
-            Tecnic Demo
+            MyPay App
           </Link>
 
           <nav className="hidden md:flex items-center gap-6">
@@ -106,15 +106,9 @@ const Layout = ({ children }: LayoutProps) => {
         )}
       </header>
 
-      <main className="max-w-6xl mx-auto px-4 py-6">
+      <main className="max-w-6xl mx-auto px-4 py-6 h-screen">
         {children || <Outlet />}
       </main>
-
-      <footer className="border-t">
-        <div className="max-w-6xl mx-auto px-4 py-6 text-sm text-gray-2000">
-          © {new Date().getFullYear()} Tecnic Demo
-        </div>
-      </footer>
     </div>
   );
 };
