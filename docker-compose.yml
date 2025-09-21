@@ -1,0 +1,73 @@
+version: '3.8'
+
+services:
+  # Servicio del Backend (Lumen)
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: epayco_server
+    ports:
+      - "8080:80"
+    volumes:
+      - ./server:/var/www/html
+      - ./server/docker/nginx.conf:/etc/nginx/http.d/default.conf
+      - ./server/docker/supervisord.conf:/etc/supervisord.conf
+    environment:
+      - "DB_CONNECTION=mysql"
+      - "DB_HOST=db"
+      - "DB_PORT=3306"
+      - "DB_DATABASE=epayco_db"
+      - "DB_USERNAME=user"
+      - "DB_PASSWORD=password"
+      - "MAIL_MAILER=smtp"
+      - "MAIL_HOST=smtp.gmail.com"
+      - "MAIL_PORT=587"
+      - "MAIL_USERNAME=perproject2@gmail.com"
+      - "MAIL_PASSWORD=ndmipkhbxbndafwh"
+      - "MAIL_ENCRYPTION=ssl"
+      - "MAIL_FROM_ADDRESS=perproject2@gmail.com"
+      - "MAIL_FROM_NAME=Código de confirmación"
+    depends_on:
+      - db
+    networks:
+      - epayco-net
+
+  # Servicio del Frontend (React)
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: epayco_client
+    ports:
+      - "3000:80"
+    depends_on:
+      - server
+    networks:
+      - epayco-net
+
+  # Servicio de Base de Datos (MySQL)
+  db:
+    image: mysql:8.0
+    container_name: epayco_db
+    restart: unless-stopped
+    ports:
+      - "3307:3306"
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_DATABASE: epayco_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: rootpassword
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - epayco-net
+
+networks:
+  epayco-net:
+    driver: bridge
+
+volumes:
+  db-data:
+    driver: local

@@ -41,15 +41,15 @@
     <div class="text-center">
       <h1 class="text-3xl font-bold text-gray-800">Tu código OTP</h1>
       <p class="mt-4 text-gray-600">Usa el siguiente código para continuar de manera segura:</p>
-      
-      <div class="code-box">
-        {{ $otp }}
-      </div>
-
       <p class="mt-6 text-gray-600 text-sm">
         Este código expirará en <strong>5 minutos</strong>.  
         Por favor, no lo compartas con nadie.
       </p>
+
+      <div class="code-box">
+        {{ $otp }}
+      </div>
+
     </div>
   </div>
 </body>

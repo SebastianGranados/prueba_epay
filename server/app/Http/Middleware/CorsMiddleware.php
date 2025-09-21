@@ -11,8 +11,17 @@ class CorsMiddleware
    */
   public function handle($request, Closure $next)
   {
+    $allowedOrigins = [
+      'http://localhost:3000',
+      'http://localhost:5173',
+      env('CORS_ORIGIN', 'http://localhost:3000')
+    ];
+
+    $origin = $request->header('Origin');
+    $allowOrigin = in_array($origin, $allowedOrigins) ? $origin : $allowedOrigins[0];
+
     $headers = [
-      'Access-Control-Allow-Origin' => env('CORS_ORIGIN', 'http://localhost:5173'),
+      'Access-Control-Allow-Origin' => $allowOrigin,
       'Access-Control-Allow-Methods' => 'GET, POST, PUT, PATCH, DELETE, OPTIONS',
       'Access-Control-Allow-Headers' => 'Content-Type, Authorization, X-Requested-With, Accept, Origin',
       'Access-Control-Allow-Credentials' => 'true',

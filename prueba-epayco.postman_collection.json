@@ -1,0 +1,1362 @@
+{
+	"info": {
+		"_postman_id": "63dcb485-2f9a-4366-b3d0-c43a5ed2b46b",
+		"name": "prueba-epayco",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43915569",
+		"_collection_link": "https://cloudy-flare-639301.postman.co/workspace/My-Workspace~a7947f3e-36b1-4a9d-8c84-65ec0031a74d/collection/43915569-63dcb485-2f9a-4366-b3d0-c43a5ed2b46b?action=share&source=collection_link&creator=43915569"
+	},
+	"item": [
+		{
+			"name": "customer",
+			"item": [
+				{
+					"name": "customer-create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"document\": \"1023974012\",\n    \"name\": \"Ricardo Castro\",\n    \"email\": \"sebastiangranadosdev@gmail.com\",\n    \"phone\": \"3102724305\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server_url}}/api/customer/create",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"customer",
+								"create"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Cliente creado con exito",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"document\": \"1234565\",\n    \"name\": \"Ricardo Castro\",\n    \"email\": \"a@gmail.com\",\n    \"phone\": \"123456675\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server_url}}/api/customer/create",
+									"host": [
+										"{{server_url}}"
+									],
+									"path": [
+										"api",
+										"customer",
+										"create"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.12"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 20 Sep 2025 00:05:36 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Customer created successfully\",\n    \"data\": {\n        \"document\": \"1234565\",\n        \"name\": \"Ricardo Castro\",\n        \"email\": \"a@gmail.com\",\n        \"phone\": \"123456675\",\n        \"id\": \"9feb3c0d-289a-4e99-9533-23d7508b94c1\",\n        \"updated_at\": \"2025-09-20T00:05:36.000000Z\",\n        \"created_at\": \"2025-09-20T00:05:36.000000Z\",\n        \"wallet\": {\n            \"id\": \"9feb3c0d-3414-43e3-b5cb-d932cc2c6309\",\n            \"customer_id\": \"9feb3c0d-289a-4e99-9533-23d7508b94c1\",\n            \"balance\": \"0.00\",\n            \"created_at\": \"2025-09-20T00:05:36.000000Z\",\n            \"updated_at\": \"2025-09-20T00:05:36.000000Z\"\n        }\n    },\n    \"error\": null\n}"
+						},
+						{
+							"name": "Error de validación",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Ricardo Castro\",\n    \"email\": \"a@gmail.com\",\n    \"phone\": \"123456675\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server_url}}/api/customer/create",
+									"host": [
+										"{{server_url}}"
+									],
+									"path": [
+										"api",
+										"customer",
+										"create"
+									]
+								}
+							},
+							"status": "Unprocessable Content",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.12"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 20 Sep 2025 00:31:57 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"Validation failed\",\n    \"data\": null,\n    \"error\": {\n        \"code\": \"ERROR_422\",\n        \"details\": {\n            \"document\": [\n                \"El documento es obligatorio\"\n            ]\n        }\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "payment",
+			"item": [
+				{
+					"name": "payment-request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"document\": \"1234565\",\n    \"phone\": \"123456675\",\n    \"value\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server_url}}/api/payment/request",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"payment",
+								"request"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Solicitud de pago exitosa",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"document\": \"1234565\",\n    \"phone\": \"123456675\",\n    \"value\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server_url}}/api/payment/request",
+									"host": [
+										"{{server_url}}"
+									],
+									"path": [
+										"api",
+										"payment",
+										"request"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.12"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 21 Sep 2025 00:10:17 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"OTP sent successfully\",\n    \"data\": {\n        \"session_id\": \"9fed40b3-c376-485c-afae-04634cc26db7\"\n    },\n    \"error\": null\n}"
+						},
+						{
+							"name": "Cliente no fue encontrado",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"document\": \"1234565\",\n    \"phone\": \"1234526675\",\n    \"value\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server_url}}/api/payment/request",
+									"host": [
+										"{{server_url}}"
+									],
+									"path": [
+										"api",
+										"payment",
+										"request"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.12"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 21 Sep 2025 05:30:52 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, PATCH, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Authorization, X-Requested-With, Accept, Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "86400"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"El cliente no fue encontrado\",\n    \"data\": null,\n    \"error\": {\n        \"code\": \"ERROR_400\",\n        \"details\": \"El cliente no fue encontrado\"\n    }\n}"
+						},
+						{
+							"name": "Monto minimo",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"document\": \"1234565\",\n    \"phone\": \"123456675\",\n    \"value\": 0\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server_url}}/api/payment/request",
+									"host": [
+										"{{server_url}}"
+									],
+									"path": [
+										"api",
+										"payment",
+										"request"
+									]
+								}
+							},
+							"status": "Unprocessable Content",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.12"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 21 Sep 2025 05:31:47 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, PATCH, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Authorization, X-Requested-With, Accept, Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "86400"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"Validation failed\",\n    \"data\": null,\n    \"error\": {\n        \"code\": \"ERROR_422\",\n        \"details\": {\n            \"value\": [\n                \"El valor debe ser al menos 1\"\n            ]\n        }\n    }\n}"
+						},
+						{
+							"name": "Saldo insuficiente",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"document\": \"1234565\",\n    \"phone\": \"123456675\",\n    \"value\": 10000000000000\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server_url}}/api/payment/request",
+									"host": [
+										"{{server_url}}"
+									],
+									"path": [
+										"api",
+										"payment",
+										"request"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.12"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 21 Sep 2025 05:32:19 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, PATCH, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Authorization, X-Requested-With, Accept, Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "86400"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"Saldo insuficiente para realizar el pago\",\n    \"data\": null,\n    \"error\": {\n        \"code\": \"ERROR_400\",\n        \"details\": \"Saldo insuficiente para realizar el pago\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "payment-confirm",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"otp\": \"540803\",\n    \"session_id\": \"9feeb6bc-6a78-4d95-a32f-6d23cba1037c\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server_url}}/api/payment/confirm",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"payment",
+								"confirm"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Longitud código OTP",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"otp\": \"7967312\",\n    \"session_id\": \"9fedb2f2-2b01-48de-84f4-3fa1a6b3b9c5\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server_url}}/api/payment/confirm",
+									"host": [
+										"{{server_url}}"
+									],
+									"path": [
+										"api",
+										"payment",
+										"confirm"
+									]
+								}
+							},
+							"status": "Unprocessable Content",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.12"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 21 Sep 2025 05:30:23 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, PATCH, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Authorization, X-Requested-With, Accept, Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "86400"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"Validation failed\",\n    \"data\": null,\n    \"error\": {\n        \"code\": \"ERROR_422\",\n        \"details\": {\n            \"otp\": [\n                \"El código OTP debe tener 6 dígitos\"\n            ]\n        }\n    }\n}"
+						},
+						{
+							"name": "Pago confirmado",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"otp\": \"426480\",\n    \"session_id\": \"9fedb6d2-4556-49ce-9613-e0f6226ec025\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server_url}}/api/payment/confirm",
+									"host": [
+										"{{server_url}}"
+									],
+									"path": [
+										"api",
+										"payment",
+										"confirm"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.12"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 21 Sep 2025 05:41:00 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:5173"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, PATCH, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Authorization, X-Requested-With, Accept, Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "86400"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Payment confirmed successfully\",\n    \"data\": {\n        \"transaction_id\": \"9fedb6fc-d121-4e21-9e77-7c85e5c062f7\"\n    },\n    \"error\": null\n}"
+						},
+						{
+							"name": "Sesión no encontrada",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"otp\": \"540803\",\n    \"session_id\": \"9feeb6bc-6a78-4d95-a32f-6d23cba0037c\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server_url}}/api/payment/confirm",
+									"host": [
+										"{{server_url}}"
+									],
+									"path": [
+										"api",
+										"payment",
+										"confirm"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.29"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 21 Sep 2025 19:17:41 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, PATCH, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Authorization, X-Requested-With, Accept, Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "86400"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"La sesión de pago no fue encontrada\",\n    \"data\": null,\n    \"error\": {\n        \"code\": \"ERROR_404\",\n        \"details\": \"La sesión de pago no fue encontrada\"\n    }\n}"
+						},
+						{
+							"name": "Error de validación",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"otp\": \"540803\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server_url}}/api/payment/confirm",
+									"host": [
+										"{{server_url}}"
+									],
+									"path": [
+										"api",
+										"payment",
+										"confirm"
+									]
+								}
+							},
+							"status": "Unprocessable Content",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.29"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 21 Sep 2025 19:18:38 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "GET, POST, PUT, PATCH, DELETE, OPTIONS"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Authorization, X-Requested-With, Accept, Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Access-Control-Max-Age",
+									"value": "86400"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"Validación fallida\",\n    \"data\": null,\n    \"error\": {\n        \"code\": \"ERROR_422\",\n        \"details\": {\n            \"session_id\": [\n                \"El ID de sesión es obligatorio\"\n            ]\n        }\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "wallet",
+			"item": [
+				{
+					"name": "balance",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server_url}}/api/wallet/balance?document=12345652&phone=123456675",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"wallet",
+								"balance"
+							],
+							"query": [
+								{
+									"key": "document",
+									"value": "12345652"
+								},
+								{
+									"key": "phone",
+									"value": "123456675"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Balance obtenido con exito",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server_url}}/api/wallet/balance?document=1234565&phone=123456675",
+									"host": [
+										"{{server_url}}"
+									],
+									"path": [
+										"api",
+										"wallet",
+										"balance"
+									],
+									"query": [
+										{
+											"key": "document",
+											"value": "1234565"
+										},
+										{
+											"key": "phone",
+											"value": "123456675"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.12"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 21 Sep 2025 00:00:35 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Balance obtenido exitosamente\",\n    \"data\": {\n        \"balance\": 940\n    },\n    \"error\": null\n}"
+						},
+						{
+							"name": "Billetera no existe",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server_url}}/api/wallet/balance?document=12345652&phone=123456675",
+									"host": [
+										"{{server_url}}"
+									],
+									"path": [
+										"api",
+										"wallet",
+										"balance"
+									],
+									"query": [
+										{
+											"key": "document",
+											"value": "12345652"
+										},
+										{
+											"key": "phone",
+											"value": "123456675"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.12"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 21 Sep 2025 00:03:11 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"Error al obtener el balance\",\n    \"data\": null,\n    \"error\": {\n        \"code\": \"ERROR_404\",\n        \"details\": \"El cliente no existe con este documento o teléfono\"\n    }\n}"
+						},
+						{
+							"name": "Error de validación",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{server_url}}/api/wallet/balance?document=12345652&phone=123456675",
+									"host": [
+										"{{server_url}}"
+									],
+									"path": [
+										"api",
+										"wallet",
+										"balance"
+									],
+									"query": [
+										{
+											"key": "document",
+											"value": "12345652"
+										},
+										{
+											"key": "phone",
+											"value": "123456675"
+										}
+									]
+								}
+							},
+							"status": "Unprocessable Content",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.12"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 21 Sep 2025 00:03:57 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"Validación fallida\",\n    \"data\": null,\n    \"error\": {\n        \"code\": \"ERROR_422\",\n        \"details\": {\n            \"document\": [\n                \"El documento es obligatorio\"\n            ],\n            \"phone\": [\n                \"El teléfono es obligatorio\"\n            ]\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "recharge",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"document\": \"12345652\",\n    \"phone\": \"1234566275\",\n    \"value\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server_url}}/api/wallet/recharge",
+							"host": [
+								"{{server_url}}"
+							],
+							"path": [
+								"api",
+								"wallet",
+								"recharge"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Recarga exitosa",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"document\": \"1234565\",\n    \"phone\": \"123456675\",\n    \"value\": 100\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server_url}}/api/wallet/recharge",
+									"host": [
+										"{{server_url}}"
+									],
+									"path": [
+										"api",
+										"wallet",
+										"recharge"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.12"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 21 Sep 2025 00:07:18 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Recarga realizada exitosamente\",\n    \"data\": {\n        \"id\": \"9feb3c0d-3414-43e3-b5cb-d932cc2c6309\",\n        \"customer_id\": \"9feb3c0d-289a-4e99-9533-23d7508b94c1\",\n        \"balance\": 1040,\n        \"created_at\": \"2025-09-20T00:05:36.000000Z\",\n        \"updated_at\": \"2025-09-21T00:07:18.000000Z\"\n    },\n    \"error\": null\n}"
+						},
+						{
+							"name": "Cliente no existe",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"document\": \"12345652\",\n    \"phone\": \"1234566275\",\n    \"value\": 100\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server_url}}/api/wallet/recharge",
+									"host": [
+										"{{server_url}}"
+									],
+									"path": [
+										"api",
+										"wallet",
+										"recharge"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.12"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 21 Sep 2025 00:07:41 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"Error al realizar la recarga\",\n    \"data\": null,\n    \"error\": {\n        \"code\": \"ERROR_404\",\n        \"details\": \"El cliente no existe con este documento y teléfono\"\n    }\n}"
+						},
+						{
+							"name": "Error de validación",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"docu2ment\": \"12345652\",\n    \"pho2ne\": \"1234566275\",\n    \"value\": 100\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server_url}}/api/wallet/recharge",
+									"host": [
+										"{{server_url}}"
+									],
+									"path": [
+										"api",
+										"wallet",
+										"recharge"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.12"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 21 Sep 2025 00:09:05 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"Validación fallida\",\n    \"data\": null,\n    \"error\": {\n        \"code\": \"ERROR_400\",\n        \"details\": {\n            \"document\": [\n                \"El documento es obligatorio\"\n            ],\n            \"phone\": [\n                \"El teléfono es obligatorio\"\n            ]\n        }\n    }\n}"
+						},
+						{
+							"name": "Montó minimo",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"document\": \"12345652\",\n    \"phone\": \"1234566275\",\n    \"value\": 0\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{server_url}}/api/wallet/recharge",
+									"host": [
+										"{{server_url}}"
+									],
+									"path": [
+										"api",
+										"wallet",
+										"recharge"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.12"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 21 Sep 2025 00:09:19 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"error\",\n    \"message\": \"Validación fallida\",\n    \"data\": null,\n    \"error\": {\n        \"code\": \"ERROR_400\",\n        \"details\": {\n            \"value\": [\n                \"El monto debe ser al menos 1\"\n            ]\n        }\n    }\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "server_url",
+			"value": "",
+			"type": "default"
+		}
+	]
+}

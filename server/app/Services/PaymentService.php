@@ -10,6 +10,10 @@ use Illuminate\Validation\ValidationException;
 
 use Exception;
 use Carbon\Carbon;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Symfony\Component\HttpKernel\Exception\ConflictHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PaymentService
 {
@@ -73,32 +77,30 @@ class PaymentService
   {
     $paymentSession = PaymentSession::find($data['session_id']);
 
-
     if (!$paymentSession) {
-      throw new Exception('La sesión de pago no fue encontrada', 404);
+      throw new NotFoundHttpException('La sesión de pago no fue encontrada');
     }
 
     if ($paymentSession->otp !== $data['otp']) {
-      throw new Exception('El código OTP no es válido', 401);
+      throw new AccessDeniedHttpException('El código no es válido');
     }
 
     if ($paymentSession->status !== 'PENDING') {
-      throw new Exception('La sesión de pago ya ha sido procesada o ha expirado', 409);
+      throw new BadRequestHttpException('La sesión de pago ya ha sido procesada o ha expirado');
     }
 
  
     if (Carbon::now()->isAfter($paymentSession->expires_at)) {
       $paymentSession->status = 'EXPIRED';
       $paymentSession->save();
-      throw new Exception('El código OTP ha expirado', 410);
+      throw new BadRequestHttpException('El código OTP ha expirado');
     }
-
 
     $customer = $paymentSession->customer;
     $wallet = $customer->wallet;
 
     if ($wallet->balance < $paymentSession->amount) {
-      throw new Exception('Saldo insuficiente para completar el pago', 400);
+      throw new BadRequestHttpException('Saldo insuficiente para completar el pago');
     }
 
     $paymentSession->status = 'CONFIRMED';
