@@ -36,9 +36,6 @@ export default function Payment() {
     }
   }, [data, navigate]);
 
-  console.log("Hi");
-  
-
   return (
     <div className="flex flex-col items-center justify-center py-56">
       <form
