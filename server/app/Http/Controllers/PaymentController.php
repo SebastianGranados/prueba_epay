@@ -40,7 +40,7 @@ class PaymentController extends Controller
       return $this->apiResponse(
         422,
         null,
-        'Validation failed',
+        'Validación fallida',
         $validator->errors(),
         true
       );
@@ -52,7 +52,7 @@ class PaymentController extends Controller
       return $this->apiResponse(
         200,
         ['session_id' => $paymentSession->id],
-        'OTP sent successfully'
+        'Codigo enviado exitosamente'
       );
     } catch (Exception $e) {
       return $this->apiResponse(
@@ -85,7 +85,7 @@ class PaymentController extends Controller
         return $this->apiResponse(
           422,
           null,
-          'Validation failed',
+          'Validación fallida',
           $validator->errors(),
           true
         );
@@ -96,7 +96,7 @@ class PaymentController extends Controller
       return $this->apiResponse(
         200,
         ['transaction_id' => $transaction->id],
-        'Payment confirmed successfully'
+        'Pago confirmado exitosamente'
       );
     } catch (Exception $e) {
       return $this->apiResponse(

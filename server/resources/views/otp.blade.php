@@ -21,13 +21,18 @@
     .mx-auto { margin-left: auto; margin-right: auto; }
     .w-full { width: 100%; }
     .max-w-md { max-width: 28rem; }
-    .bg-indigo-600 { background-color: #4f46e5; }
-    .text-white { color: #ffffff; }
-    .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
-    .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
-    .rounded-lg { border-radius: 0.5rem; }
-    .uppercase { text-transform: uppercase; }
-    .tracking-wide { letter-spacing: 0.05em; }
+    .code-box { 
+      display: inline-block;
+      margin-top: 1.5rem;
+      font-size: 1.75rem;
+      font-weight: bold;
+      letter-spacing: 0.2em;
+      color: #1a202c;
+      background-color: #edf2f7;
+      border: 2px dashed #a0aec0;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+    }
     .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
   </style>
 </head>
@@ -36,9 +41,11 @@
     <div class="text-center">
       <h1 class="text-3xl font-bold text-gray-800">Tu código OTP</h1>
       <p class="mt-4 text-gray-600">Usa el siguiente código para continuar de manera segura:</p>
-      <div class="mt-6 bg-indigo-600 text-white py-3 px-6 rounded-lg text-xl font-bold tracking-wide">
+      
+      <div class="code-box">
         {{ $otp }}
       </div>
+
       <p class="mt-6 text-gray-600 text-sm">
         Este código expirará en <strong>5 minutos</strong>.  
         Por favor, no lo compartas con nadie.
