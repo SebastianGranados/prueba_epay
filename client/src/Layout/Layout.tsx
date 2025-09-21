@@ -16,16 +16,19 @@ const Layout = ({ children }: LayoutProps) => {
             Tecnic Demo
           </Link>
 
-          <nav className="hidden md:flex items-center gap-4">
+          <nav className="hidden md:flex items-center gap-6">
             <Link
               to="/wallet"
               className="text-sm font-medium text-gray-700 hover:text-indigo-600"
             >
               Billetera
             </Link>
-          </nav>
-
-          <nav className="hidden md:flex items-center gap-4">
+            <Link
+              to="/payment"
+              className="text-sm font-medium text-gray-700 hover:text-indigo-600"
+            >
+              Solicitar pagos
+            </Link>
             <Link
               to="/customer"
               className="text-sm font-medium text-gray-700 hover:text-indigo-600"
@@ -75,7 +78,7 @@ const Layout = ({ children }: LayoutProps) => {
         </div>
 
         {mobileOpen && (
-          <div id="mobile-menu" className="md:hidden bos-cent bg-gray-50">
+          <div id="mobile-menu" className="md:hidden bg-gray-50">
             <div className="space-y-1 px-4 py-3">
               <Link
                 to="/wallet"
@@ -84,8 +87,13 @@ const Layout = ({ children }: LayoutProps) => {
               >
                 Billetera
               </Link>
-            </div>
-            <div className="space-y-1 px-4 py-3">
+              <Link
+                to="/payment"
+                className="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-200 hover:text-indigo-600"
+                onClick={() => setMobileOpen(false)}
+              >
+                Solicitar pagos
+              </Link>
               <Link
                 to="/customer"
                 className="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-200 hover:text-indigo-600"
