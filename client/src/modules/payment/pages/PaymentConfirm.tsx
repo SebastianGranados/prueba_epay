@@ -57,7 +57,7 @@ export default function PaymentConfirm() {
           Confirmar Pago
         </h2>
         <p className="text-center text-gray-600">
-          Ingresa el código OTP enviado a tu teléfono
+          Ingresa el código OTP enviado a tu correo electrónico
         </p>
 
         <div className="flex justify-between gap-2" onPaste={handlePaste}>

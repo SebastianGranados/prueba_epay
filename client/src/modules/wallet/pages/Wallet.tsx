@@ -8,9 +8,6 @@ export default function WalletPage() {
 
   return (
     <div className="flex flex-col items-center justify-center py-56">
-      {activeTab === "balance" && <WalletBalanceForm />}
-      {activeTab === "recharge" && <WalletRechargeForm />}
-
       <div className="flex space-x-4 mt-6">
         <button
           onClick={() => setActiveTab("balance")}
@@ -34,6 +31,9 @@ export default function WalletPage() {
           Recargar Wallet
         </button>
       </div>
+      {activeTab === "balance" && <WalletBalanceForm />}
+      {activeTab === "recharge" && <WalletRechargeForm />}
+
     </div>
   );
 }

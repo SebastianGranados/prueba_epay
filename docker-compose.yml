@@ -1,7 +1,6 @@
 version: '3.8'
 
 services:
-  # Servicio del Backend (Lumen)
   server:
     build:
       context: ./server
@@ -9,31 +8,32 @@ services:
     container_name: epayco_server
     ports:
       - "8080:80"
+    # Monta el código, pero preserva vendor con volumen anónimo
     volumes:
       - ./server:/var/www/html
-      - ./server/docker/nginx.conf:/etc/nginx/http.d/default.conf
-      - ./server/docker/supervisord.conf:/etc/supervisord.conf
+      - /var/www/html/vendor
+      - ./server/docker/nginx.conf:/etc/nginx/http.d/default.conf:ro
+      - ./server/docker/supervisord.conf:/etc/supervisord.conf:ro
     environment:
-      - "DB_CONNECTION=mysql"
-      - "DB_HOST=db"
-      - "DB_PORT=3306"
-      - "DB_DATABASE=epayco_db"
-      - "DB_USERNAME=user"
-      - "DB_PASSWORD=password"
-      - "MAIL_MAILER=smtp"
-      - "MAIL_HOST=smtp.gmail.com"
-      - "MAIL_PORT=587"
-      - "MAIL_USERNAME=perproject2@gmail.com"
-      - "MAIL_PASSWORD=ndmipkhbxbndafwh"
-      - "MAIL_ENCRYPTION=ssl"
-      - "MAIL_FROM_ADDRESS=perproject2@gmail.com"
-      - "MAIL_FROM_NAME=Código de confirmación"
+      DB_CONNECTION: mysql
+      DB_HOST: db
+      DB_PORT: "3306"
+      DB_DATABASE: epayco_db
+      DB_USERNAME: user
+      DB_PASSWORD: password
+      MAIL_MAILER: smtp
+      MAIL_HOST: smtp.gmail.com
+      MAIL_PORT: "587"
+      MAIL_USERNAME: perproject2@gmail.com
+      MAIL_PASSWORD: ndmipkhbxbndafwh
+      MAIL_ENCRYPTION: ssl
+      MAIL_FROM_ADDRESS: perproject2@gmail.com
+      MAIL_FROM_NAME: "Código de confirmación"
     depends_on:
       - db
     networks:
       - epayco-net
 
-  # Servicio del Frontend (React)
   client:
     build:
       context: ./client
@@ -46,7 +46,6 @@ services:
     networks:
       - epayco-net
 
-  # Servicio de Base de Datos (MySQL)
   db:
     image: mysql:8.0
     container_name: epayco_db
@@ -61,6 +60,11 @@ services:
       MYSQL_ROOT_PASSWORD: rootpassword
     volumes:
       - db-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u$$MYSQL_USER -p$$MYSQL_PASSWORD --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
     networks:
       - epayco-net
 
