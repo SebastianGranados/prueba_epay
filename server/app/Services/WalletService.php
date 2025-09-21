@@ -19,7 +19,7 @@ class WalletService
       ->first();
 
     if (!$customer) {
-      throw new NotFoundHttpException('El cliente no existe con este documento o teléfono');
+      throw new NotFoundHttpException('No existe ninguna billetera asociada a este documento o teléfono');
     }
 
     $wallet = $customer->wallet;
@@ -41,7 +41,7 @@ class WalletService
       ->first();
 
     if (!$customer) {
-      throw new NotFoundHttpException('El cliente no existe con este documento y teléfono');
+      throw new NotFoundHttpException('No existe ninguna billetera asociada a este documento o teléfono');
     }
 
     $wallet = $customer->wallet;
