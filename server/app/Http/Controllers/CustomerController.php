@@ -25,13 +25,14 @@ class CustomerController extends Controller
   public function register(Request $request): JsonResponse
   {
     $validator = Validator::make($request->all(), [
-      'document' => 'required|string|min:6',
+      'document' => 'required|string|min:6|max:30',
       'name' => 'required|string|min:2|max:100',
       'email' => 'required|email|max:100',
       'phone' => 'nullable|string|max:20'
     ], [
       'document.required' => 'El documento es obligatorio',
       'document.min' => 'El documento debe tener al menos 6 caracteres',
+      'document.max' => 'El documento no puede tener más de 30 caracteres',
       'name.required' => 'El nombre es obligatorio',
       'name.min' => 'El nombre debe tener al menos 2 caracteres',
       'email.required' => 'El email es obligatorio',
