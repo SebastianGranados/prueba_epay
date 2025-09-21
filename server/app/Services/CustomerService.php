@@ -38,7 +38,7 @@ class CustomerService
       ->first();
 
     if ($existingCustomer) {
-      throw new BadRequestHttpException('El cliente ya existe con este documento, email o teléfono');
+      throw new BadRequestHttpException('Un cliente ya existe con este documento, email o teléfono');
     }
   }
 

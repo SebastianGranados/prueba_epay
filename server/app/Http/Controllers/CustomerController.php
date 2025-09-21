@@ -25,7 +25,7 @@ class CustomerController extends Controller
   public function register(Request $request): JsonResponse
   {
     $validator = Validator::make($request->all(), [
-      'document' => 'required|string|min:6|max:20',
+      'document' => 'required|string|min:6',
       'name' => 'required|string|min:2|max:100',
       'email' => 'required|email|max:100',
       'phone' => 'nullable|string|max:20'
