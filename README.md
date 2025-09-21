@@ -42,7 +42,7 @@ Sigue estos pasos para levantar el proyecto en tu entorno local usando Docker.
 
 ```bash
 git clone https://github.com/SebastianGranados/prueba_epay.git
-cd prueba-epayco
+cd prueba-epay
 ```
 
 ### 2. Construir y Levantar los Contenedores
