@@ -22,10 +22,11 @@ $router->group(['prefix' => 'api'], function () use ($router) {
   $router->post('customer/create',  ['uses' => 'CustomerController@register']);
   
   // Rutas de billetera
-  $router->post('wallet/recharge', ['uses' => 'WalletController@recharge']); // Recargar de billetera
+  $router->post('wallet/recharge', ['uses' => 'WalletController@recharge']);
   $router->get('wallet/balance', ['uses' => 'WalletController@balance']);
 
+  //
   $router->post('payment/request', ['uses' => 'PaymentController@requestPayment']);
   $router->post('payment/confirm', ['uses' => 'PaymentController@confirmPayment']);
-  
+
 });

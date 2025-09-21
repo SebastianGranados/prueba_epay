@@ -83,9 +83,10 @@ $app->configure('mail');
 |
 */
 
-// $app->middleware([
-//     App\Http\Middleware\ExampleMiddleware::class
-// ]);
+// Global Middleware
+$app->middleware([
+    App\Http\Middleware\CorsMiddleware::class,
+]);
 
 // $app->routeMiddleware([
 //     'auth' => App\Http\Middleware\Authenticate::class,
