@@ -8,7 +8,7 @@ export default function WalletPage() {
 
   return (
     <div className="flex flex-col items-center justify-center py-56">
-      <div className="flex space-x-4 mt-6">
+      <div className="flex space-x-4 mb-6">
         <button
           onClick={() => setActiveTab("balance")}
           className={`py-2 px-4 rounded-md font-semibold ${
@@ -33,7 +33,6 @@ export default function WalletPage() {
       </div>
       {activeTab === "balance" && <WalletBalanceForm />}
       {activeTab === "recharge" && <WalletRechargeForm />}
-
     </div>
   );
 }
